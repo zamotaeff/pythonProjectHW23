@@ -1,5 +1,7 @@
 from marshmallow import fields, Schema, validates_schema, ValidationError
 
+from constants import VALID_CMD_PARAMS
+
 
 class RequestParams(Schema):
     cmd = fields.Str(required=True)
