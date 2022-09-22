@@ -13,7 +13,7 @@ def map_query(param: str, data: List[str]) -> List[str]:
     return list(map(lambda x: x.split(' ')[col_number], data))
 
 
-def unique_query(data: List[str]) -> List:
+def unique_query(data: List[str], *args, **kwargs) -> List:
     """Функция создает список из уникальных позиций."""
     return list(set(data))
 

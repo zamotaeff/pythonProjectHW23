@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, Response
 
 from marshmallow import ValidationError
 
@@ -10,12 +10,11 @@ main_bp = Blueprint('main', __name__)
 
 
 @main_bp.route('/perform_query', methods=['POST'])
-def perform_query():
+def perform_query() -> Response:
     try:
         params = BatchRequestParams().load(request.json)
-
     except ValidationError as error:
-        return error.message, 404
+        return Response(response=error.messages, status=400)
 
     result = None
     for query in params['queries']:
